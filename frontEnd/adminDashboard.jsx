@@ -42,36 +42,7 @@ export default function AdminDashboard() {
     fetchTheaters();
   }, []);
 
-  //adminmovies
-//   useEffect(() => {
-//   const fetchAdminMovies = async () => {
-//     const token = localStorage.getItem("token");
-//     if (!token) return;
 
-//     const decoded = jwtDecode(token);
-//     try {
-//       const res = await fetch(`http://localhost:5000/api/movies/admin/${decoded.id}`, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       });
-
-//       if (res.ok) {
-//         const data = await res.json();
-//         console.log(data);
-//         setMovies(data);
-//       } else {
-//         console.error("Failed to fetch admin movies");
-//       }
-//     } catch (err) {
-//       console.error("Error fetching admin movies:", err);
-//     }
-//   };
-
-//   if (user) {
-//     fetchAdminMovies();
-//   }
-// }, [user]);
 useEffect(() => {
   const fetchAdminMovies = async () => {
     const token = localStorage.getItem("token");
