@@ -208,7 +208,7 @@ const handleEditMovie = (movie) => {
               Add Movie
             </button>
 
-            {adminTheaters.length === 0 ? (
+            
               <button
                 onClick={() => {
                   setShowTheaterForm(true);
@@ -219,11 +219,7 @@ const handleEditMovie = (movie) => {
                 <Plus className="w-4 h-4" />
                 Add Theater
               </button>
-            ) : (
-              <div className="bg-white text-purple-700 font-semibold shadow px-5 py-2 rounded-xl border border-purple-300 flex items-center">
-                🎭 {adminTheaters[0].name} (Registered)
-              </div>
-            )}
+           
           </div>
         </div>
 

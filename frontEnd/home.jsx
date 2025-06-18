@@ -43,12 +43,12 @@ export default function Home() {
         {movies.length === 0 ? (
           <p className="text-red-500">No movies available currently.</p>
         ) : (
-          <div className="flex overflow-x-auto gap-6 scrollbar-hide pb-2">
+          <div className="grid grid-cols-7 gap-6 scrollbar-hide pb-2">
             {movies.map((movie) => (
               <div
                 key={movie.id}
                 onClick={() => handleMovieClick(movie.id)}
-                className="min-w-[180px] max-w-[200px] flex-shrink-0 cursor-pointer"
+                className=" flex-shrink-0 cursor-pointer"
               >
                 <div className="relative rounded-xl overflow-hidden shadow hover:shadow-lg transition">
                   <img
