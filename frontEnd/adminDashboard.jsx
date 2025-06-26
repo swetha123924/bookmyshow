@@ -11,6 +11,7 @@ export default function AdminDashboard() {
   const [showTheaterForm, setShowTheaterForm] = useState(false);
   const [theaterForm, setTheaterForm] = useState({ name: "", location: "" });
   const [adminTheaters, setAdminTheaters] = useState([]);
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   const [movieForm, setMovieForm] = useState({
     title: "", language: "", duration: "", genre: "", poster_url: "", trailer_url: "",
@@ -31,7 +32,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetchTheaters = async () => {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/api/theaters", {
+      const res = await fetch(`${BASE_URL}/api/theaters`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -53,7 +54,7 @@ useEffect(() => {
     console.log("Decoded:", decoded);
 
     try {
-      const res = await fetch(`http://localhost:5000/api/movies/admin/${decoded.id}`, {
+      const res = await fetch(`${BASE_URL}/api/movies/admin/${decoded.id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -82,7 +83,7 @@ useEffect(() => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch("http://localhost:5000/api/theaters", {
+      const res = await fetch(`${BASE_URL}/api/theaters`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,8 +108,8 @@ useEffect(() => {
   const decoded = jwtDecode(token);
 
   const url = editingMovie
-    ? `http://localhost:5000/api/movies/${editingMovie.id}`
-    : "http://localhost:5000/api/movies";
+    ? `${BASE_URL}/api/movies/${editingMovie.id}`
+    : `${BASE_URL}/api/movies`;
   const method = editingMovie ? "PUT" : "POST";
 
 
@@ -170,7 +171,7 @@ const handleEditMovie = (movie) => {
   const token = localStorage.getItem("token");
   if (!window.confirm("Are you sure you want to delete this movie?")) return;
 
-  const res = await fetch(`http://localhost:5000/api/movies/${id}`, {
+  const res = await fetch(`${BASE_URL}/api/movies/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,

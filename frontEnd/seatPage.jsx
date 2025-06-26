@@ -11,6 +11,7 @@ export default function SelectSeatsPage() {
   const { movie, theater, showtime, selectedDate, show_id, user_id } = state || {};
 
   const numericPrice = Number(movie?.price || 0);
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   const seatLayout = {
     VIP: { rows: ["M"], price: 295 },
@@ -25,7 +26,7 @@ export default function SelectSeatsPage() {
     const fetchBookedSeats = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/booked-seats?show_id=${show_id}&date=${selectedDate}`
+          `${BASE_URL}/api/booked-seats?show_id=${show_id}&date=${selectedDate}`
         );
         const data = await res.json();
         console.log(data);
@@ -108,7 +109,7 @@ export default function SelectSeatsPage() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/bookings", {
+      const response = await fetch(`${BASE_URL}/api/bookings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bookingData),

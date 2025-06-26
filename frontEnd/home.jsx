@@ -7,20 +7,22 @@ export default function Home() {
   const [movies, setMovies] = useState([]);
   const [theaters, setTheaters] = useState([]);
   const navigate = useNavigate();
+    const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
   const handleMovieClick = (movieId) => {
     navigate(`/movie/${movieId}`);
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/movies")
+    fetch(`${BASE_URL}/api/movies`)
       .then((response) => response.json())
       .then((data) => {
       setMovies(data);
       console.log("Fetched movies:", data);})
       .catch((error) => console.error("Error fetching movies:", error));
       
-    fetch("http://localhost:5000/api/theaters")
+    fetch(`${BASE_URL}/api/theaters`)
       .then((response) => response.json())
       .then((data) => setTheaters(data))
       .catch((error) => console.error("Error fetching theaters:", error));

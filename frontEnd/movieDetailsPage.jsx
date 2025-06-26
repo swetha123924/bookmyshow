@@ -9,9 +9,10 @@ export default function MovieDetail() {
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/movies/${movieId}`)
+    fetch(`${BASE_URL}/api/movies/${movieId}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Network response was not ok");

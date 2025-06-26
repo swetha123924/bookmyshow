@@ -9,6 +9,7 @@ export default function ShowtimePage() {
   const navigate = useNavigate();
   const user_id = JSON.parse(localStorage.getItem("user")).id;
   console.log(user_id);
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
   
   
 
@@ -17,7 +18,7 @@ export default function ShowtimePage() {
       if (!movie?.title) return;
 
       try {
-        const res = await fetch(`http://localhost:5000/api/theaters/by-movie-title/${movie.title}`);
+        const res = await fetch(`${BASE_URL}/api/theaters/by-movie-title/${movie.title}`);
         const data = await res.json();
         console.log("Fetched theater data:", data);
 
