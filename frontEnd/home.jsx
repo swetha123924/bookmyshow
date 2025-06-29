@@ -7,7 +7,10 @@ export default function Home() {
   const [movies, setMovies] = useState([]);
   const [theaters, setTheaters] = useState([]);
   const navigate = useNavigate();
-    const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+    // const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    const BASE_URL = "https://bookmyshow-1-jhez.onrender.com";
+
+
 
 
   const handleMovieClick = (movieId) => {
@@ -45,7 +48,7 @@ export default function Home() {
         {movies.length === 0 ? (
           <p className="text-red-500">No movies available currently.</p>
         ) : (
-          <div className="grid grid-cols-7 gap-6 scrollbar-hide pb-2">
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 scrollbar-hide pb-2">
             {movies.map((movie) => (
               <div
                 key={movie.id}
@@ -56,7 +59,7 @@ export default function Home() {
                   <img
                     src={movie.poster_url}
                     alt={movie.title}
-                    className="w-full h-[270px] object-cover rounded"
+                    className="w-full h-[270px] object-fill rounded"
                   />
                   {/* Optional "PROMOTED" badge */}
                   {movie.promoted && (

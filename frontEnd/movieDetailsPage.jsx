@@ -9,7 +9,10 @@ export default function MovieDetail() {
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+  // const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const BASE_URL = "https://bookmyshow-1-jhez.onrender.com";
+
+
 
   useEffect(() => {
     fetch(`${BASE_URL}/api/movies/${movieId}`)

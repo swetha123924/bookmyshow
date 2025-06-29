@@ -11,7 +11,9 @@ export default function AdminDashboard() {
   const [showTheaterForm, setShowTheaterForm] = useState(false);
   const [theaterForm, setTheaterForm] = useState({ name: "", location: "" });
   const [adminTheaters, setAdminTheaters] = useState([]);
-  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+  const BASE_URL = "https://bookmyshow-1-jhez.onrender.com";
+
+
 
   const [movieForm, setMovieForm] = useState({
     title: "", language: "", duration: "", genre: "", poster_url: "", trailer_url: "",

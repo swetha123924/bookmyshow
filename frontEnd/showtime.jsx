@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import HomeHeader from "./header";
+import AppFooter from "./footer";
 
 export default function ShowtimePage() {
   const location = useLocation();
@@ -9,7 +11,10 @@ export default function ShowtimePage() {
   const navigate = useNavigate();
   const user_id = JSON.parse(localStorage.getItem("user")).id;
   console.log(user_id);
-  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+  // const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const BASE_URL = "https://bookmyshow-1-jhez.onrender.com";
+
+
   
   
 
@@ -50,7 +55,9 @@ export default function ShowtimePage() {
   };
 
   return (
+
     <main className="bg-gray-100 min-h-screen p-6">
+      <HomeHeader />
       {movie ? (
         <>
           <h1 className="text-2xl font-bold mb-2">{movie.title} - ({movie.language})</h1>
@@ -137,6 +144,7 @@ export default function ShowtimePage() {
       ) : (
         <p className="text-center text-red-500 text-lg">No movie data found.</p>
       )}
+      <AppFooter />
     </main>
   );
 }

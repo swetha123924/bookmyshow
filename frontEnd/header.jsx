@@ -35,9 +35,9 @@ const HomeHeader = () => {
         {/* Logo & Search */}
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
           <img
-            src="/logo.png"
+            src="https://originserver-static1-uat.pvrcinemas.com/pvrcms/pvrinox/Logo/2025/PVR_logo_20250529.png"
             alt="BookMyShow"
-            className="w-36 h-auto object-contain"
+            className="h-10 object-contain"
           />
           <div className="relative w-full sm:w-[350px]">
             <input

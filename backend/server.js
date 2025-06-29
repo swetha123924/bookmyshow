@@ -8,7 +8,12 @@ import bookingRoutes from './routes/bookingRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js'
 
 const app = express();
-app.use(cors());
+app.use(cors(
+    {
+  origin: "https://incredible-crepe-867787.netlify.app/", // Replace this!
+  credentials: true
+}
+));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);

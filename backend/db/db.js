@@ -83,23 +83,14 @@ const createTables = async () => {
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
         show_id INTEGER REFERENCES theater_movies(id) ON DELETE CASCADE,
+        theater_id INTEGER REFERENCES theaters(id) ON DELETE CASCADE,
         seats JSONB NOT NULL,
         total_price NUMERIC NOT NULL,
+        booking_status VARCHAR(50) DEFAULT 'booked',
         created_at TIMESTAMP DEFAULT NOW()
       );
     `);
 
-    // 6. payments
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS payments (
-        id SERIAL PRIMARY KEY,
-        booking_id INTEGER REFERENCES bookings(id) ON DELETE CASCADE,
-        amount NUMERIC NOT NULL,
-        payment_method VARCHAR(50) NOT NULL,
-        status VARCHAR(50) DEFAULT 'pending',
-        paid_at TIMESTAMP DEFAULT NOW()
-      );
-    `);
 
     // 7. theater_movies
     await pool.query(`

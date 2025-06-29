@@ -7,6 +7,8 @@ import AdminDashboard from '../frontEnd/adminDashboard'
 import MovieDetail from '../frontEnd/movieDetailsPage'
 import ShowtimePage from '../frontEnd/showtime'
 import SelectSeatsPage from '../frontEnd/seatPage'
+import PaymentPage from '../frontEnd/paymentPage'
+import SuccessPage from '../frontEnd/successpage'
 function App() {
   return(
     <>
@@ -19,6 +21,10 @@ function App() {
         <Route path="/movie/:movieId" element={<MovieDetail />} />
         <Route path="/showtimes" element={<ShowtimePage />} />
         <Route path="/select-seats" element={<SelectSeatsPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/success" element={<SuccessPage />} />
+
+
         {/* Add more routes as needed */}
       </Routes>
     </Router>

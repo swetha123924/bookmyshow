@@ -1,4 +1,3 @@
-// backend/Auth/auth.js
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 

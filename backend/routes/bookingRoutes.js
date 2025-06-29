@@ -1,4 +1,3 @@
-// routes/bookingRoutes.js
 import express from "express";
 import { createBooking } from "../controllers/bookingController.js";
 
