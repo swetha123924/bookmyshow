@@ -9,6 +9,7 @@ import ShowtimePage from '../frontEnd/showtime'
 import SelectSeatsPage from '../frontEnd/seatPage'
 import PaymentPage from '../frontEnd/paymentPage'
 import SuccessPage from '../frontEnd/successpage'
+import Bookings from '../frontEnd/bookings'
 function App() {
   return(
     <>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/select-seats" element={<SelectSeatsPage />} />
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/success" element={<SuccessPage />} />
+        <Route path="/bookings" element={<Bookings />} />
 
 
         {/* Add more routes as needed */}

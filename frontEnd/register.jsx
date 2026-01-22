@@ -20,16 +20,21 @@ export default function Register() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (res.ok) {
+
+      const data = await res.json().catch(() => null);
+
+      if (res.ok && data?.token) {
         alert("Registration successful!");
-        localStorage.setItem("token", (await res.json()).token);
-        console.log("Registration successful, token saved to localStorage",res);
+        localStorage.setItem("token", data.token);
+        console.log("Registration successful, token saved to localStorage", res);
         navigate("/login");
-        
       } else {
-        alert("Registration failed");
+        const message = data?.message || `Registration failed (${res.status})`;
+        alert(message);
+        console.error("Registration failed", { status: res.status, body: data });
       }
     } catch (err) {
+      console.error("Error during registration", err);
       alert("Error during registration");
     }
   };

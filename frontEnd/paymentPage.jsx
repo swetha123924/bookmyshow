@@ -41,14 +41,14 @@ const user = JSON.parse(localStorage.getItem("user"));
     console.log("Sending booking data:", bookingData);
 
     try {
-      const res = await fetch("https://bookmyshow-1-jhez.onrender.com/api/bookings", {
+      const res = await fetch(`${BASE_URL}/api/bookings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bookingData),
       });
 
       const data = await res.json();
-      console.log(data);
+      console.log("Booking response:", data);
       
 
       if (res.ok) {
