@@ -1,6 +1,5 @@
 import { pool } from '../db/db.js';
 
-
 export const createBooking = async (req, res) => {
   const { user_id, show_id, theater_id, seats, total_price } = req.body;
 
@@ -62,6 +61,47 @@ export const createBooking = async (req, res) => {
     });
   } catch (err) {
     console.error("❌ Booking error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const getUserBookings = async (req, res) => {
+  const { userId } = req.params;
+
+  if (!userId) {
+    return res.status(400).json({ message: "Missing user id" });
+  }
+
+  try {
+    const query = `
+      SELECT 
+        b.id,
+        b.seats,
+        b.total_price,
+        b.created_at,
+        b.booking_status,
+        m.title,
+        m.poster_url,
+        m.language,
+        m.duration,
+        t.name AS theater_name
+      FROM bookings b
+      LEFT JOIN theater_movies tm ON b.show_id = tm.id
+      LEFT JOIN movies m ON tm.movie_id = m.id
+      LEFT JOIN theaters t ON b.theater_id = t.id
+      WHERE b.user_id = $1
+      ORDER BY b.created_at DESC;
+    `;
+
+    const result = await pool.query(query, [userId]);
+    const bookings = result.rows.map((row) => ({
+      ...row,
+      seats: typeof row.seats === "string" ? JSON.parse(row.seats) : row.seats,
+    }));
+
+    res.json({ bookings });
+  } catch (err) {
+    console.error("❌ Error fetching user bookings:", err);
     res.status(500).json({ message: "Server error" });
   }
 };
